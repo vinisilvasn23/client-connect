@@ -13,7 +13,7 @@ import { ClientsService } from './clients.service';
 import { CreateClientDto } from './dto/create-client.dto';
 import { UpdateClientDto } from './dto/update-client.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { ClientAuthGuard } from '../auth/clientAuth.guard';
+import { JwtStrategy } from '../auth/jwt.strategy';
 
 @ApiTags('Clients')
 @Controller('clients')
@@ -27,21 +27,21 @@ export class ClientsController {
 
   @Get()
   @ApiBearerAuth()
-  @UseGuards(ClientAuthGuard)
+  @UseGuards(JwtStrategy)
   findAll() {
     return this.clientsService.findAll();
   }
 
   @Get(':id')
   @ApiBearerAuth()
-  @UseGuards(ClientAuthGuard)
+  @UseGuards(JwtStrategy)
   findOne(@Param('id') id: string) {
     return this.clientsService.findOne(id);
   }
 
   @Patch(':id')
   @ApiBearerAuth()
-  @UseGuards(ClientAuthGuard)
+  @UseGuards(JwtStrategy)
   update(@Param('id') id: string, @Body() updateClientDto: UpdateClientDto) {
     return this.clientsService.update(id, updateClientDto);
   }
@@ -49,7 +49,7 @@ export class ClientsController {
   @HttpCode(204)
   @Delete(':id')
   @ApiBearerAuth()
-  @UseGuards(ClientAuthGuard)
+  @UseGuards(JwtStrategy)
   remove(@Param('id') id: string) {
     return this.clientsService.remove(id);
   }
