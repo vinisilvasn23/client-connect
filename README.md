@@ -8,8 +8,7 @@ Este projeto visa criar uma aplicação simples para gerenciar clientes e seus c
 
 1. Clone este repositório.
    ```bash
-   git clone https://github.com/seu-usuario/locadora-filmes-typeorm.git
-   cd locadora-filmes-typeorm
+...
    ```
 
 2. Execute o script de para instalar as dependências e iniciar da aplicação.
