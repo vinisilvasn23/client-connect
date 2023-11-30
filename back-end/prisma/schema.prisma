@@ -23,9 +23,9 @@ model Client {
 model Contact {
   id               String   @id
   fullName         String
-  email            String   @unique
+  email            String
   phone            String
   registrationDate DateTime
-  client           Client   @relation(fields: [clientId], references: [id])
+  client           Client   @relation(fields: [clientId], references: [id], onDelete: Cascade)
   clientId         String
 }
