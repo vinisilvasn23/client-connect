@@ -74,10 +74,9 @@ export class ClientsService {
     return plainToInstance(Client, updatedClient);
   }
 
-  async remove(id: string) {
+  async remove(id: string): Promise<void> {
     await this.findClientOrFail(id);
-
-    return await this.prisma.client.delete({
+    await this.prisma.client.delete({
       where: { id },
     });
   }

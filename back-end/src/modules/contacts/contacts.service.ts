@@ -10,11 +10,11 @@ export class ContactsService {
 
   async create(createContactDto: CreateContactDto, clientId: string) {
     const findContact = await this.prisma.contact.findFirst({
-      where: { email: createContactDto.email },
+      where: { email: createContactDto.email, clientId: clientId },
     });
-
+  
     if (findContact) {
-      throw new ConflictException('Contact already exists!');
+      throw new ConflictException('Contact already exists for this client!');
     }
     const contact = new Contact();
     Object.assign(contact, {
